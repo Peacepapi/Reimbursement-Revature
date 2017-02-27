@@ -1,17 +1,22 @@
 package com.revature.reimbursement.DAO;
 
+import java.time.LocalDate;
 import java.util.List;
 
-import com.revature.reimbursement.Model.ERS_Reimbursement;
-import com.revature.reimbursement.Model.ERS_Reimbursement_Type;
-import com.revature.reimbursement.Model.ERS_Users;
+import com.revature.reimbursement.Model.Reimbursement;
+import com.revature.reimbursement.Model.ReimbursementStatus;
+import com.revature.reimbursement.Model.ReimbursementType;
+import com.revature.reimbursement.Model.User;
 
 public interface ReimbursementDAO {
-	public boolean createReimburseRequest();
-	public List<ERS_Reimbursement> getReimburseByUser(ERS_Users user);
-	public List<ERS_Reimbursement> getAllReimburse();
-	public List<ERS_Reimbursement> getReimburseByStatus(String status);
-	public boolean processReimburse();
-	public ERS_Reimbursement getReimburseById(int id);
-	public List<ERS_Reimbursement_Type> getAllReimburseTypes();
+	
+	public boolean createReimbRequest(double amount, LocalDate submitted, User author, ReimbursementStatus status, ReimbursementType type);
+	public boolean processReimb(int reimbId, int statusId, int resolverId, LocalDate resolvedDate);
+
+	public List<Reimbursement> getReimbByUser(int userId);
+	public List<Reimbursement> getAllReimb();
+	public List<Reimbursement> getReimbByStatus(int StatusId);
+	public List<ReimbursementType> getAllReimbType();
+
+	public Reimbursement getReimbById(int reimbId);
 }
