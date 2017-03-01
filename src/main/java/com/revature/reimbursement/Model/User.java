@@ -10,6 +10,17 @@ public class User {
 	private String userEmail;
 	private UserRole userRole;
 	
+	public User() {}
+	public User(int userId, String username, String userFName, String userLName, String userEmail, UserRole userRole) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.userFName = userFName;
+		this.userLName = userLName;
+		this.userEmail = userEmail;
+		this.userRole = userRole;
+	}
+
 	public int getUserId() {
 		return userId;
 	}

@@ -10,13 +10,13 @@ import com.revature.reimbursement.Model.User;
 
 public interface ReimbursementDAO {
 	
-	public boolean createReimbRequest(double amount, LocalDate submitted, User author, ReimbursementStatus status, ReimbursementType type);
-	public boolean processReimb(int reimbId, int statusId, int resolverId, LocalDate resolvedDate);
+	public boolean createReimbRequest(double amount, LocalDate submitted, int authorId, int statusId, int typeId) throws Exception;
+	public boolean processReimb(int reimbId, int statusId, int resolverId, LocalDate resolvedDate) throws Exception;
 
-	public List<Reimbursement> getReimbByUser(int userId);
-	public List<Reimbursement> getAllReimb();
-	public List<Reimbursement> getReimbByStatus(int StatusId);
-	public List<ReimbursementType> getAllReimbType();
+	public List<Reimbursement> getReimbByUser(int userId) throws Exception;
+	public List<Reimbursement> getAllReimb() throws Exception;
+	public List<Reimbursement> getReimbByStatus(int statusId) throws Exception;
+	public List<ReimbursementType> getAllReimbType(int typeId) throws Exception;
 
-	public Reimbursement getReimbById(int reimbId);
+	public Reimbursement getReimbById(int reimbId) throws Exception;
 }

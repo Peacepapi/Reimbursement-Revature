@@ -3,6 +3,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.revature.reimbursement.DAO.ReimbursementDAO;
+import com.revature.reimbursement.DAO.ReimbursementDAOImpl;
 import com.revature.reimbursement.DAO.UserDAOImpl;
 import com.revature.reimbursement.Utility.ConnectionFactory;
 
@@ -20,7 +22,12 @@ public class ConnectionTest {
 	
 	@Test
 	public void getUser(){
-		UserDAOImpl dao = new UserDAOImpl();
-		System.out.println(dao.getUserByUsername("SDippy").getUsername());
+		ReimbursementDAOImpl dao = new ReimbursementDAOImpl();
+		try {
+			System.out.println(dao.getReimbById(1).getrAuthor().getUserEmail());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 }

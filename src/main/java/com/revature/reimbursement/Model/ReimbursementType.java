@@ -5,6 +5,13 @@ public class ReimbursementType {
 	private int rTypeId;
 	private String rType;
 	
+	public ReimbursementType(){}
+	public ReimbursementType(int rTypeId, String rType) {
+		super();
+		this.rTypeId = rTypeId;
+		this.rType = rType;
+	}
+	
 	public int getrTypeId() {
 		return rTypeId;
 	}

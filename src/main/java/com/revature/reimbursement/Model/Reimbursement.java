@@ -16,6 +16,21 @@ public class Reimbursement {
 	private User rAuthor;
 	private User rResolver;
 	
+	public Reimbursement() {}
+	public Reimbursement(int rId, double rAmount, LocalDate rSubmitted, LocalDate rResolved, String rDescription,
+			Blob rReceipt, ReimbursementStatus rStatus, ReimbursementType rType, User rAuthor, User rResolver) {
+		super();
+		this.rId = rId;
+		this.rAmount = rAmount;
+		this.rSubmitted = rSubmitted;
+		this.rResolved = rResolved;
+		this.rDescription = rDescription;
+		this.rReceipt = rReceipt;
+		this.rStatus = rStatus;
+		this.rType = rType;
+		this.rAuthor = rAuthor;
+		this.rResolver = rResolver;
+	}
 	public int getrId() {
 		return rId;
 	}
