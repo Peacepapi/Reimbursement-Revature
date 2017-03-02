@@ -1,0 +1,28 @@
+body {
+  background: #800020;
+}
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.form-container {
+  background-color: #d6d1b5;
+  margin: 40% 20%;
+}
+.form-row {
+  padding: 75px 0;
+}
+.navbar{
+  margin-bottom: 10%;
+  border: none;
+  background: #fff;
+}
+#main-body {
+  min-height: 500px;
+  background: #fff;
+}
+table {
+  text-align: center;
+}
