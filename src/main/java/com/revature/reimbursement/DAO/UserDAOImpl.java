@@ -3,59 +3,48 @@ package com.revature.reimbursement.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import com.revature.reimbursement.Model.User;
 import com.revature.reimbursement.Model.UserRole;
 import com.revature.reimbursement.Utility.ConnectionFactory;
 
 public class UserDAOImpl implements UserDAO {
+	Connection conn;
 
-	public User getUserByUsername(String username) {
-		Connection conn = null;
-		try {
-			// inner join, so it will get all info from both tables(ERS_USERS,
-			// ERS_USER_ROLE)
-			String sql = "SELECT * FROM ERS_USERS " + "INNER JOIN ERS_USER_ROLES "
-					+ "ON ERS_USERS.USER_ROLE_ID = ERS_USER_ROLES.ERS_USER_ROLE_ID " + "WHERE ERS_USERNAME = ?";
-			conn = ConnectionFactory.getConnection();
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, username);
+	public UserDAOImpl(Connection conn) {
+		this.conn = conn;
+	}
 
-			ResultSet rs = stmt.executeQuery();
+	public User getUserByUsername(String username) throws Exception {
+		conn = ConnectionFactory.getConnection();
+		String sql = "SELECT * FROM ERS_USERS " + "INNER JOIN ERS_USER_ROLES "
+				+ "ON ERS_USERS.USER_ROLE_ID = ERS_USER_ROLES.ERS_USER_ROLE_ID " + "WHERE ERS_USERNAME = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, username);
 
-			UserRole userRole = new UserRole();
-			User user = new User();
-			while (rs.next()) {
-				userRole.setUserRoleId(rs.getInt("ERS_USER_ROLE_ID"));
-				userRole.setUserRole(rs.getString("USER_ROLE"));
+		ResultSet rs = stmt.executeQuery();
 
-				user.setUserId(rs.getInt("ERS_USERS_ID"));
-				user.setUsername(rs.getString("ERS_USERNAME"));
-				user.setPassword(rs.getString("ERS_PASSWORD"));
-				user.setUserFName(rs.getString("USER_FIRST_NAME"));
-				user.setUserLName(rs.getString("USER_LAST_NAME"));
-				user.setUserEmail(rs.getString("USER_EMAIL"));
-				user.setUserRole(userRole);
-			}
-			return user;
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		UserRole userRole = new UserRole();
+		User user = new User();
+		while (rs.next()) {
+			userRole.setUserRoleId(rs.getInt("ERS_USER_ROLE_ID"));
+			userRole.setUserRole(rs.getString("USER_ROLE"));
+
+			user.setUserId(rs.getInt("ERS_USERS_ID"));
+			user.setUsername(rs.getString("ERS_USERNAME"));
+			user.setPassword(rs.getString("ERS_PASSWORD"));
+			user.setUserFName(rs.getString("USER_FIRST_NAME"));
+			user.setUserLName(rs.getString("USER_LAST_NAME"));
+			user.setUserEmail(rs.getString("USER_EMAIL"));
+			user.setUserRole(userRole);
 		}
-		return null;
+		return user;
 	}
 
 	public User getUserById(int userId) throws Exception {
-		Connection conn = null;
+		conn = ConnectionFactory.getConnection();
 		String sql = "SELECT * FROM ERS_USERS " + "INNER JOIN ERS_USER_ROLES "
 				+ "ON ERS_USERS.USER_ROLE_ID = ERS_USER_ROLES.ERS_USER_ROLE_ID " + "WHERE ERS_USERS_ID = ?";
-		conn = ConnectionFactory.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, userId);
 

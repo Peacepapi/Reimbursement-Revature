@@ -3,7 +3,7 @@ package com.revature.reimbursement.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,18 +15,45 @@ import com.revature.reimbursement.Model.UserRole;
 import com.revature.reimbursement.Utility.ConnectionFactory;
 
 public class ReimbursementDAOImpl implements ReimbursementDAO {
-
-	public boolean createReimbRequest(double amount, LocalDate submitted, int authorId, int statusId, int typeId) throws Exception{
-		return false;
+	Connection conn;
+	
+	public ReimbursementDAOImpl(Connection conn) {
+		this.conn = conn;
+	}
+	
+	public boolean createReimbRequest(double amount, String description, Timestamp submitted, int authorId, int typeId) throws Exception{
+		conn = ConnectionFactory.getConnection();
+		String sql = "INSERT INTO ERS_REIMBURSEMENT"
+				+ "(REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_SUBMITTED, REIMB_AUTHOR, REIMB_TYPE_ID) "
+				+ "VALUES (?,?,?,?,?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setDouble(1, amount);
+		stmt.setString(2, description);
+		stmt.setTimestamp(3, submitted);
+		stmt.setInt(4, authorId);
+		stmt.setInt(5, typeId);
+		
+		int isSuccess = stmt.executeUpdate();
+		
+		return isSuccess > 0;
 	}
 
-	public boolean processReimb(int reimbId, int statusId, int resolverId, LocalDate resolvedDate) throws Exception{
-		return false;
+	public boolean processReimb(int reimbId, int statusId, int resolverId, Timestamp resolvedDate) throws Exception{
+		conn = ConnectionFactory.getConnection();
+		String sql = "UPDATE ERS_REIMBURSEMENT SET REIMB_STATUS_ID = ?, REIMB_RESOLVER = ?, REIMB_RESOLVED = ? WHERE REIMB_ID = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, statusId);
+		stmt.setInt(2, resolverId);
+		stmt.setTimestamp(3, resolvedDate);
+		stmt.setInt(4, reimbId);
+		
+		int isSuccess = stmt.executeUpdate();
+		
+		return isSuccess > 0;
 	}
 	
 	public List<ReimbursementType> getAllReimbType(int typeId) throws Exception {
-		Connection conn = ConnectionFactory.getConnection();
-
+		conn = ConnectionFactory.getConnection();
 		String sql = "SELECT * FROM ERS_REIMBURSEMENT_TYPE";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
@@ -40,7 +67,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	}
 	
 	public List<Reimbursement> getReimbByUser(int userId) throws Exception{
-		Connection conn = ConnectionFactory.getConnection();
+		conn = ConnectionFactory.getConnection();
 
 		String sql = "SELECT * FROM V_All_Reimb where reimb_author = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -60,7 +87,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ReimbursementStatus status = new ReimbursementStatus(rs.getInt("status_id"), rs.getString("status"));
 
 			Reimbursement reimb = new Reimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
-					rs.getDate("reimb_submitted").toLocalDate(), rs.getDate("reimb_resolved").toLocalDate(),
+					rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
 					rs.getString("reimb_description"), rs.getBlob("reimb_receipt"), status, type, author, resolvsr);
 			
 			reimbList.add(reimb);
@@ -69,7 +96,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	}
 
 	public List<Reimbursement> getAllReimb() throws Exception{
-		Connection conn = ConnectionFactory.getConnection();
+		conn = ConnectionFactory.getConnection();
 
 		String sql = "SELECT * FROM V_All_Reimb";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -88,22 +115,23 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ReimbursementStatus status = new ReimbursementStatus(rs.getInt("status_id"), rs.getString("status"));
 
 			Reimbursement reimb = new Reimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
-					rs.getDate("reimb_submitted").toLocalDate(), rs.getDate("reimb_resolved").toLocalDate(),
+					rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
 					rs.getString("reimb_description"), rs.getBlob("reimb_receipt"), status, type, author, resolvsr);
 			
 			reimbList.add(reimb);
-		}
+		}		
 		return reimbList;
 	}
 
 	public List<Reimbursement> getReimbByStatus(int statusId) throws Exception{
-		Connection conn = ConnectionFactory.getConnection();
+		conn = ConnectionFactory.getConnection();
 
 		String sql = "SELECT * FROM V_All_Reimb WHERE reimb_status_id = ?";
+		System.out.println("Yoo");
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, statusId);
 		ResultSet rs = stmt.executeQuery();
-
+		System.out.println("Oyy");
 		List<Reimbursement> reimbList = new ArrayList<Reimbursement>();
 		while (rs.next()) {
 			UserRole authorRole = new UserRole(rs.getInt("authorRole_id"), rs.getString("authorRole"));
@@ -117,9 +145,9 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ReimbursementStatus status = new ReimbursementStatus(rs.getInt("status_id"), rs.getString("status"));
 
 			Reimbursement reimb = new Reimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
-					rs.getDate("reimb_submitted").toLocalDate(), rs.getDate("reimb_resolved").toLocalDate(),
+					rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
 					rs.getString("reimb_description"), rs.getBlob("reimb_receipt"), status, type, author, resolvsr);
-			
+
 			reimbList.add(reimb);
 		}
 		return reimbList;
@@ -146,7 +174,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 			ReimbursementStatus status = new ReimbursementStatus(rs.getInt("status_id"), rs.getString("status"));
 
 			reimb = new Reimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
-					rs.getDate("reimb_submitted").toLocalDate(), rs.getDate("reimb_resolved").toLocalDate(),
+					rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
 					rs.getString("reimb_description"), rs.getBlob("reimb_receipt"), status, type, author, resolvsr);
 		}
 		return reimb;

@@ -1,14 +1,14 @@
 package com.revature.reimbursement.Model;
 
 import java.sql.Blob;
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 public class Reimbursement {
 	
 	private int rId;
 	private double rAmount;
-	private LocalDate rSubmitted;
-	private LocalDate rResolved;
+	private Timestamp rSubmitted;
+	private Timestamp rResolved;
 	private String rDescription;
 	private Blob rReceipt;
 	private ReimbursementStatus rStatus;
@@ -17,7 +17,7 @@ public class Reimbursement {
 	private User rResolver;
 	
 	public Reimbursement() {}
-	public Reimbursement(int rId, double rAmount, LocalDate rSubmitted, LocalDate rResolved, String rDescription,
+	public Reimbursement(int rId, double rAmount, Timestamp rSubmitted, Timestamp rResolved, String rDescription,
 			Blob rReceipt, ReimbursementStatus rStatus, ReimbursementType rType, User rAuthor, User rResolver) {
 		super();
 		this.rId = rId;
@@ -43,16 +43,16 @@ public class Reimbursement {
 	public void setrAmount(double rAmount) {
 		this.rAmount = rAmount;
 	}
-	public LocalDate getrSubmitted() {
+	public Timestamp getrSubmitted() {
 		return rSubmitted;
 	}
-	public void setrSubmitted(LocalDate rSubmitted) {
+	public void setrSubmitted(Timestamp rSubmitted) {
 		this.rSubmitted = rSubmitted;
 	}
-	public LocalDate getrResolved() {
+	public Timestamp getrResolved() {
 		return rResolved;
 	}
-	public void setrResolved(LocalDate rResolved) {
+	public void setrResolved(Timestamp rResolved) {
 		this.rResolved = rResolved;
 	}
 	public String getrDescription() {

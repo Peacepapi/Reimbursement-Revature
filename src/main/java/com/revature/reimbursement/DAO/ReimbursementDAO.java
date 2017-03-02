@@ -1,17 +1,15 @@
 package com.revature.reimbursement.DAO;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.revature.reimbursement.Model.Reimbursement;
-import com.revature.reimbursement.Model.ReimbursementStatus;
 import com.revature.reimbursement.Model.ReimbursementType;
-import com.revature.reimbursement.Model.User;
 
 public interface ReimbursementDAO {
 	
-	public boolean createReimbRequest(double amount, LocalDate submitted, int authorId, int statusId, int typeId) throws Exception;
-	public boolean processReimb(int reimbId, int statusId, int resolverId, LocalDate resolvedDate) throws Exception;
+	public boolean createReimbRequest(double amount, String description, Timestamp submitted, int authorId, int typeId) throws Exception;
+	public boolean processReimb(int reimbId, int statusId, int resolverId, Timestamp resolvedDate) throws Exception;
 
 	public List<Reimbursement> getReimbByUser(int userId) throws Exception;
 	public List<Reimbursement> getAllReimb() throws Exception;
