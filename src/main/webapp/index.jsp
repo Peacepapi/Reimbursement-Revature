@@ -7,10 +7,12 @@
 			<div class="row form-row">
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<h2>Welcome PRS</h2>
-					<p>Please Log in to continue.</p>
+					<c:if test="${message != null }">
+						<c:out value="${message}"></c:out>
+					</c:if>
 				</div>
 				<div class="col-sm-6 col-sm-offset-3">
-					<form action="#" method="post">
+					<form action="login" method="post">
 						<div class="form-group row">
 							<input type="text" class="form-control" name="username"
 								placeholder="Username" required>

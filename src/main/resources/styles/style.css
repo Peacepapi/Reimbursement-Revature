@@ -74,13 +74,3 @@ body {
 .table>tbody>tr>td:LAST-CHILD {
 	border-right: 0;
 }
-
-.btn-success {
-	background-color: #2EC4B6;
-	border-color: #2EC4B6;
-}
-
-.btn-danger {
-	background-color: #000;
-	border-color: #000;
-}

@@ -5,4 +5,4 @@
 	crossorigin="anonymous">
 	
 <link rel="stylesheet" href="style.css">
-<title>Login | Pierce's Reimbursement System</title>
+<title>PRS</title>
