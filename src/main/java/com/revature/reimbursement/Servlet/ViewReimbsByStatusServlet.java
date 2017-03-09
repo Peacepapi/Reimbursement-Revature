@@ -10,18 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.reimbursement.DAO.DataFacade;
 import com.revature.reimbursement.Model.Reimbursement;
+import com.revature.reimbursement.Model.User;
 
 public class ViewReimbsByStatusServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		if(req.getParameter("statusId") == null) {
+		User user = (User) req.getSession().getAttribute("current_user");
+		
+		if(req.getParameter("statusId") == null || user.getUserRole().getUserRoleId() != 2) {
 			resp.sendRedirect(req.getContextPath() + "/App/home");
 		}
 		
 		int id = Integer.parseInt(req.getParameter("statusId"));
-		System.out.println(id);
 		DataFacade df = new DataFacade();
 		
 		List<Reimbursement> allReimb = df.getReimbByStatus(id);

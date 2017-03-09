@@ -106,11 +106,11 @@ public class DataFacade implements IDataFacade, AutoCloseable {
 		return reimbList;
 	}
 
-	public List<ReimbursementType> getAllReimbType(int typeId) {
+	public List<ReimbursementType> getAllReimbType() {
 		List<ReimbursementType> reimbTypeList = new ArrayList<ReimbursementType>();
 
 		try {
-			reimbTypeList = reimbDAO.getAllReimbType(typeId);
+			reimbTypeList = reimbDAO.getAllReimbType();
 		} catch (Exception e) {
 			System.out.println("From getAllReimbType: ");
 			e.printStackTrace();

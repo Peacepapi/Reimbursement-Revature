@@ -18,7 +18,7 @@ public interface IDataFacade {
 	public List<Reimbursement> getReimbByUser(int userId);
 	public List<Reimbursement> getAllReimb() throws Exception;
 	public List<Reimbursement> getReimbByStatus(int statusId);
-	public List<ReimbursementType> getAllReimbType(int typeId);
+	public List<ReimbursementType> getAllReimbType();
 
 	public Reimbursement getReimbById(int reimbId);
 }

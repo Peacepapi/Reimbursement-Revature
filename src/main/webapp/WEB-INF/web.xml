@@ -16,7 +16,7 @@
 		<servlet-name>login</servlet-name>
 		<url-pattern>login</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>viewAllReimb</servlet-name>
 		<servlet-class>com.revature.reimbursement.Servlet.ViewAllReimbServlet</servlet-class>
@@ -43,6 +43,44 @@
 		<servlet-name>viewReimbsByStatus</servlet-name>
 		<url-pattern>/App/ViewReimbsByStatus</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>submitReimb</servlet-name>
+		<servlet-class>com.revature.reimbursement.Servlet.CreateReimbServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>submitReimb</servlet-name>
+		<url-pattern>/App/ReimbCreate</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>processReimb</servlet-name>
+		<servlet-class>com.revature.reimbursement.Servlet.ProcessReimbServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>processReimb</servlet-name>
+		<url-pattern>/App/ProcessReimb</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ErrorHandler</servlet-name>
+		<servlet-class>com.revature.reimbursement.Servlet.ErrorHandlerServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ErrorHandler</servlet-name>
+		<url-pattern>/error</url-pattern>
+	</servlet-mapping>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error</location>
+	</error-page>
 
 	<filter>
 		<filter-name>auth</filter-name>

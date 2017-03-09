@@ -15,7 +15,7 @@ public interface ReimbursementDAO {
 	public List<Reimbursement> getAllReimb() throws Exception;
 	public List<Reimbursement> getReimbByStatus(int statusId) throws Exception;
 	
-	public List<ReimbursementType> getAllReimbType(int typeId) throws Exception;
+	public List<ReimbursementType> getAllReimbType() throws Exception;
 
 	public Reimbursement getReimbById(int reimbId) throws Exception;
 }

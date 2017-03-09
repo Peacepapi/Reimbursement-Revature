@@ -52,7 +52,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		return isSuccess > 0;
 	}
 	
-	public List<ReimbursementType> getAllReimbType(int typeId) throws Exception {
+	public List<ReimbursementType> getAllReimbType() throws Exception {
 		conn = ConnectionFactory.getConnection();
 		String sql = "SELECT * FROM ERS_REIMBURSEMENT_TYPE";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -60,7 +60,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 
 		List<ReimbursementType> reimbTypeList = new ArrayList<ReimbursementType>();
 		while (rs.next()) {
-			ReimbursementType type = new ReimbursementType(rs.getInt("type_id"), rs.getString("type"));
+			ReimbursementType type = new ReimbursementType(rs.getInt("REIMB_TYPE_ID"), rs.getString("REIMB_TYPE"));
 			reimbTypeList.add(type);
 		}
 		return reimbTypeList;
@@ -127,11 +127,9 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		conn = ConnectionFactory.getConnection();
 
 		String sql = "SELECT * FROM V_All_Reimb WHERE reimb_status_id = ?";
-		System.out.println("Yoo");
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, statusId);
 		ResultSet rs = stmt.executeQuery();
-		System.out.println("Oyy");
 		List<Reimbursement> reimbList = new ArrayList<Reimbursement>();
 		while (rs.next()) {
 			UserRole authorRole = new UserRole(rs.getInt("authorRole_id"), rs.getString("authorRole"));
@@ -154,7 +152,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	}
 	
 	public Reimbursement getReimbById(int reimbId) throws Exception {
-		Connection conn = ConnectionFactory.getConnection();
+		conn = ConnectionFactory.getConnection();
 
 		String sql = "SELECT * FROM V_All_Reimb WHERE reimb_id = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
