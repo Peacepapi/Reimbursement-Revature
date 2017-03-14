@@ -28,6 +28,12 @@ public class ViewReimbsByStatusServlet extends HttpServlet {
 		
 		List<Reimbursement> allReimb = df.getReimbByStatus(id);
 		
+		try {
+			df.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		req.setAttribute("reimbList", allReimb);
 		req.getRequestDispatcher("/App/home.jsp").forward(req, resp);
 	}

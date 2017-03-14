@@ -13,12 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthFilter implements Filter {
 
 	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest servReq = (HttpServletRequest) req;
@@ -31,9 +25,14 @@ public class AuthFilter implements Filter {
 	}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
+	public void destroy() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@Override
+	public void init(FilterConfig arg0) throws ServletException {
+		// TODO Auto-generated method stub
+		
+	}
 }

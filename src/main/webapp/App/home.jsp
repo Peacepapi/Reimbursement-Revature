@@ -20,6 +20,7 @@
 							<th>Status</th>
 							<th>Resolver</th>
 							<th>Resolved Date</th>
+							<th>Receipt</th>
 							<c:if test="${current_user.userRole.userRoleId == 2}">
 								<th>Option</th>
 							</c:if>
@@ -43,7 +44,7 @@
 								<c:if test="${reimb.rDescription != null}">
 									<td>${reimb.rDescription}</td>
 								</c:if>
-								<td>${reimb.rAuthor.userFName}${reimb.rAuthor.userLName}</td>
+								<td>${reimb.rAuthor.userFName} ${reimb.rAuthor.userLName}</td>
 								<td>${reimb.rType.rType}</td>
 								<td><fmt:formatDate type="date" value="${reimb.rSubmitted}" /></td>
 								<td><fmt:formatNumber value="${reimb.rAmount}"
@@ -68,6 +69,13 @@
 								<c:if test="${reimb.rResolved == null}">
 									<td class="empty-fields">-</td>
 								</c:if>
+								<td><c:if test="${reimb.rReceipt != null }">
+										<a href="ReimbImage?id=${reimb.rId}" target="_blank"><i
+											class="fa fa-list-alt fa-2x" aria-hidden="true"></i> </a>
+									</c:if> <c:if test="${reimb.rReceipt == null }">
+										<span class="empty-fields">-</span>
+									</c:if></td>
+
 								<c:if
 									test="${reimb.rStatus.rStatusId == 1 && current_user.userRole.userRoleId == 2}">
 									<td>
@@ -94,12 +102,9 @@
 					</c:forEach>
 					<tbody>
 						<tr>
-							<td colspan="10">
-							<a href="ReimbCreate">
-								<i class="fa fa-plus-circle"
-								aria-hidden="true"></i></td>
-							</a>
-								
+							<td colspan="11"><a href="ReimbCreate"> <a
+									href="ReimbCreate"><i class="fa fa-plus-circle fa-2x"
+										aria-hidden="true"></i></a></td>
 						</tr>
 
 					</tbody>

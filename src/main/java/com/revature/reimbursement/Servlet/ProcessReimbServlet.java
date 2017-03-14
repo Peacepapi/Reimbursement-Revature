@@ -25,6 +25,12 @@ public class ProcessReimbServlet extends HttpServlet{
 		
 		boolean isSuccess = df.processReimb(reimbId, statusId, user.getUserId(), resolvedDate);
 		
+		try {
+			df.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		if(isSuccess) {
 			resp.sendRedirect(req.getContextPath() + "/App/home");
 		} else {

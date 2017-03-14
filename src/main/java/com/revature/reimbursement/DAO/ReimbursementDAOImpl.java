@@ -1,5 +1,7 @@
 package com.revature.reimbursement.DAO;
 
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,17 +23,20 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		this.conn = conn;
 	}
 	
-	public boolean createReimbRequest(double amount, String description, Timestamp submitted, int authorId, int typeId) throws Exception{
+	public boolean createReimbRequest(double amount, String description, Timestamp submitted, int authorId, int typeId, InputStream receipt) throws Exception{
 		conn = ConnectionFactory.getConnection();
+		
+		
 		String sql = "INSERT INTO ERS_REIMBURSEMENT"
-				+ "(REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_SUBMITTED, REIMB_AUTHOR, REIMB_TYPE_ID) "
-				+ "VALUES (?,?,?,?,?)";
+				+ "(REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_SUBMITTED, REIMB_AUTHOR, REIMB_TYPE_ID, REIMB_RECEIPT) "
+				+ "VALUES (?,?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setDouble(1, amount);
 		stmt.setString(2, description);
 		stmt.setTimestamp(3, submitted);
 		stmt.setInt(4, authorId);
 		stmt.setInt(5, typeId);
+		stmt.setBlob(6, receipt);
 		
 		int isSuccess = stmt.executeUpdate();
 		
@@ -176,5 +181,22 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 					rs.getString("reimb_description"), rs.getBlob("reimb_receipt"), status, type, author, resolvsr);
 		}
 		return reimb;
+	}
+
+	@Override
+	public Blob getImageById(int id) throws Exception {
+		conn = ConnectionFactory.getConnection();
+
+		String sql = "SELECT REIMB_RECEIPT FROM ERS_REIMBURSEMENT WHERE REIMB_ID = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, id);
+		ResultSet rs = stmt.executeQuery();
+		
+		Blob blob = null;
+		
+		while(rs.next()){
+			blob = rs.getBlob("REIMB_RECEIPT");
+		}
+		return blob;
 	}
 }

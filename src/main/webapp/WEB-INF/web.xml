@@ -67,7 +67,7 @@
 		<servlet-class>com.revature.reimbursement.Servlet.ErrorHandlerServlet</servlet-class>
 	</servlet>
 	
-	<servlet-mapping>
+ 	<servlet-mapping>
 		<servlet-name>ErrorHandler</servlet-name>
 		<url-pattern>/error</url-pattern>
 	</servlet-mapping>
@@ -80,8 +80,17 @@
 	<error-page>
 		<error-code>404</error-code>
 		<location>/error</location>
-	</error-page>
-
+	</error-page> 
+	
+	<servlet>
+		<servlet-name>image</servlet-name>
+		<servlet-class>com.revature.reimbursement.Servlet.RetrieveImageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>image</servlet-name>
+		<url-pattern>/App/ReimbImage</url-pattern>
+	</servlet-mapping>
+	
 	<filter>
 		<filter-name>auth</filter-name>
 		<filter-class>com.revature.reimbursement.Servlet.AuthFilter</filter-class>

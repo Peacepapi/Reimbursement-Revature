@@ -1,6 +1,9 @@
 package com.revature.reimbursement.Servlet;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +31,12 @@ public class ViewAllReimbServlet extends HttpServlet {
 			allReimb = df.getReimbByUser(user.getUserId());
 		} else {
 			allReimb = df.getAllReimb();
+		}
+		
+		try {
+			df.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		req.setAttribute("reimbList", allReimb);

@@ -1,9 +1,14 @@
 body {
-	background-image: url('office.jpg');
-	background: #2EC4B6;
-	text-transform: capitalize;
+/* 	background-image: url(office.jpg);
+    background-size: cover;
+    background-repeat: no-repeat; */
+    text-transform: capitalize;
+    background-color: #b3b9bd;
 }
-
+.navbar-default {
+	background: #2b4e7f;
+	color: #fff;
+}
 .centered {
 	position: fixed;
 	top: 50%;
@@ -13,7 +18,7 @@ body {
 
 .form-container {
 	background-color: #fff;
-	margin: 40% 20%;
+    margin: 40% 20%;
 }
 
 .form-container:hover {
@@ -26,7 +31,7 @@ body {
 
 .btn-cus {
 	color: #fff;
-	background-color: #2EC4B6;
+	background-color: #2b4e7f;
 }
 
 .container-fluid {
@@ -34,17 +39,18 @@ body {
 }
 
 .navbar {
-	border-radius: 0; margin-bottom : 10%;
+	border-radius: 0; 
+	margin-bottom : 10%;
 	border: none;
 	margin-bottom: 10%;
 }
 
 .navbar-default .navbar-brand {
-	color: #000;
+	color: #fff;
 }
 
 .navbar-default .navbar-nav>li>a {
-	color: #000;
+	color: #fff;
 }
 .navbar-nav>li>p {
 	padding-top: 15px;
@@ -61,7 +67,7 @@ body {
 }
 
 .table>thead>tr>th {
-	background-color: #797373;
+	background-color: #2b4e7f;
 	color: #fff; border-right : 2px solid #ddd;
 	text-align: center;
 	border-right: 2px solid #ddd;

@@ -23,21 +23,21 @@ public class ConnectionTest {
 		}
 	}
 
-	@Test
-	public void getAllReimb() {
-		DataFacade df = new DataFacade();
-		List<Reimbursement> list = df.getAllReimb();
-		System.out.println(list);	
-	}
+//	@Test
+//	public void getAllReimb() {
+//		DataFacade df = new DataFacade();
+//		List<Reimbursement> list = df.getAllReimb();
+//		System.out.println(list);	
+//	}
 	
-	@Test
-	public void addUser() {
-		String hashed = BCrypt.hashpw("123456789", BCrypt.gensalt());
-		System.out.println(hashed);
-		if (BCrypt.checkpw("password", hashed))
-			System.out.println("It matches");
-		else
-			System.out.println("It does not match");
-	}
+//	@Test
+//	public void addUser() {
+//		String hashed = BCrypt.hashpw("123456789", BCrypt.gensalt());
+//		System.out.println(hashed);
+//		if (BCrypt.checkpw("password", hashed))
+//			System.out.println("It matches");
+//		else
+//			System.out.println("It does not match");
+//	}
 }
 

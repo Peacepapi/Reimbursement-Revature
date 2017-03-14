@@ -7,6 +7,7 @@
 			<div class="row form-row">
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<h2>Welcome PRS</h2>
+					<p>Please Log in to Continue</p>
 					<c:if test="${message != null }">
 						<c:out value="${message}"></c:out>
 					</c:if>

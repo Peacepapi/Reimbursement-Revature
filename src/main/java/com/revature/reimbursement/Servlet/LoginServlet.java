@@ -23,14 +23,20 @@ public class LoginServlet extends HttpServlet {
 		DataFacade df = new DataFacade();
 		User user = df.getUserByUsername(uName);
 		
+		try {
+			df.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		if(user.getUsername() != null){
 			if (BCrypt.checkpw(pWord, user.getPassword())) {
 				req.getSession().setAttribute("current_user", user);
 				resp.sendRedirect("App/home");
 			}
 		} else {
-			req.setAttribute("message", "Wrong Credentials");
-			req.getRequestDispatcher("index.jsp").forward(req, resp);
+			req.getSession().setAttribute("message", "Wrong Credentials");
+			resp.sendRedirect("index.jsp");
 		}
 	}
 	

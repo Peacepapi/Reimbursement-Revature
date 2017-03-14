@@ -1,5 +1,7 @@
 body {
-	background: #2EC4B6;
+	/* 	background-image: url(skyscraper.jpg);
+    background-size: cover; */
+	background-color: #2b4e7f;
 	text-transform: capitalize;
 }
 
@@ -16,7 +18,11 @@ body {
 }
 
 .form-container:hover {
-	box-shadow: 5px 5px 2.5px #e7e7e7;
+	box-shadow: 5px 5px 2.5px #000;
+}
+
+button:hover {
+	color: #fff;
 }
 
 .form-row {
@@ -25,7 +31,7 @@ body {
 
 .btn-cus {
 	color: #fff;
-	background-color: #2EC4B6;
+	background-color: #2b4e7f;
 }
 
 .container-fluid {
@@ -33,17 +39,23 @@ body {
 }
 
 .navbar {
-	border-radius: 0; margin-bottom : 10%;
+	border-radius: 0;
+	margin-bottom: 10%;
 	border: none;
 	margin-bottom: 10%;
 }
 
 .navbar-default .navbar-brand {
-	color: #000;
+	color: #fff;
 }
 
 .navbar-default .navbar-nav>li>a {
-	color: #000;
+	color: #fff;
+}
+
+.navbar-nav>li>p {
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 #main-body {
@@ -58,7 +70,8 @@ body {
 
 .table>thead>tr>th {
 	background-color: #797373;
-	color: #fff; border-right : 2px solid #ddd;
+	color: #fff;
+	border-right: 2px solid #ddd;
 	text-align: center;
 	border-right: 2px solid #ddd;
 }
@@ -69,8 +82,8 @@ body {
 }
 
 .table>tbody>tr>td {
-	background-color: #EEEEEE; 
-	border-right : 2px solid #ddd;
+	background-color: #EEEEEE;
+	border-right: 2px solid #ddd;
 	text-align: center;
 	border-right: 2px solid #ddd;
 }
@@ -89,24 +102,36 @@ body {
 	border-color: #000;
 }
 
-.btn-success:hover .btn-success:focus {
+.btn-success:hover {
 	background-color: #12a597;
 	border-color: #12a597;
 }
 
-.btn-danger:hover .btn-danger:focus {
+.btn-success:focus {
+	background-color: #12a597;
+	border-color: #12a597;
+}
+
+.btn-danger:hover {
 	background-color: gray;
-    border-color: #000;
-    color: #fff;
+	border-color: #000;
+	color: #fff;
+}
+
+.btn-danger:focus {
+	background-color: gray;
+	border-color: #000;
+	color: #fff;
 }
 
 .empty-fields {
 	font-style: italic;
-    color: #5d5757;
+	color: #5d5757;
 }
+
 .reimb-form {
 	background: #e7e7e7;
-    padding: 5% 0;
+	padding: 5% 0;
 }
 
 #form-approve {

@@ -1,5 +1,7 @@
 package com.revature.reimbursement.DAO;
 
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -49,10 +51,10 @@ public class DataFacade implements IDataFacade, AutoCloseable {
 	}
 
 	public boolean createReimbRequest(double amount, String description, Timestamp submitted, int authorId,
-			int typeId) {
+			int typeId, InputStream receipt) {
 		boolean isSuccess = false;
 		try {
-			isSuccess = reimbDAO.createReimbRequest(amount, description, submitted, authorId, typeId);
+			isSuccess = reimbDAO.createReimbRequest(amount, description, submitted, authorId, typeId, receipt);
 		} catch (Exception e) {
 			System.out.println("From createReimbRequest: ");
 			e.printStackTrace();
@@ -128,8 +130,22 @@ public class DataFacade implements IDataFacade, AutoCloseable {
 		}
 		return reimb;
 	}
+	
+	@Override
+	public Blob getImageById(int id) {
+		Blob blob = null;
+		try {
+			blob = reimbDAO.getImageById(id);
+		} catch (Exception e) {
+			System.out.println("From getImageById: ");
+			e.printStackTrace();
+		}
+		return blob;
+	}
 
 	public void close() throws Exception {
 		if(conn != null) conn.close();		
 	}
+
+
 }

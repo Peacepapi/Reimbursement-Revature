@@ -14,12 +14,14 @@
 						</c:out>
 					</p>
 				</li>
-				<c:if test="${current_user != null}">
-					<li><a href="logout">Logout</a></li>
-				</c:if>
-				<c:if test="${current_user.userRole.userRoleId != 2}">
-					<li><a href="ReimbCreate">Create Reimb</a></li>
-				</c:if>
+				<li><c:if test="${current_user.userRole.userRoleId != 2}">
+						<a href="ReimbCreate">Create Reimb</a>
+					</c:if></li>
+				<li><c:if test="${current_user != null}">
+						<a href="logout">Logout</a>
+					</c:if></li>
+
+
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
