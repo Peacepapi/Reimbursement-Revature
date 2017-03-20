@@ -120,16 +120,16 @@ public class DataFacade implements IDataFacade, AutoCloseable {
 		return reimbTypeList;
 	}
 
-	public Reimbursement getReimbById(int reimbId) {
-		Reimbursement reimb = new Reimbursement();
-		try {
-			reimb = reimbDAO.getReimbById(reimbId);
-		} catch (Exception e) {
-			System.out.println("From getReimbById: ");
-			e.printStackTrace();
-		}
-		return reimb;
-	}
+//	public Reimbursement getReimbById(int reimbId) {
+//		Reimbursement reimb = new Reimbursement();
+//		try {
+//			reimb = reimbDAO.getReimbById(reimbId);
+//		} catch (Exception e) {
+//			System.out.println("From getReimbById: ");
+//			e.printStackTrace();
+//		}
+//		return reimb;
+//	}
 	
 	@Override
 	public Blob getImageById(int id) {

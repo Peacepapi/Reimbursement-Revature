@@ -19,6 +19,6 @@ public interface ReimbursementDAO {
 	public Blob getImageById(int id) throws Exception;
 	
 	public List<ReimbursementType> getAllReimbType() throws Exception;
-
-	public Reimbursement getReimbById(int reimbId) throws Exception;
+	// never display individual reimb on a page. Not necessary
+	//public Reimbursement getReimbById(int reimbId) throws Exception;
 }

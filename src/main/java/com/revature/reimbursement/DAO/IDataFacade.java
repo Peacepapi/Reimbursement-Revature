@@ -23,5 +23,5 @@ public interface IDataFacade {
 	public List<ReimbursementType> getAllReimbType();
 	public Blob getImageById(int id);
 
-	public Reimbursement getReimbById(int reimbId);
+	//public Reimbursement getReimbById(int reimbId);
 }

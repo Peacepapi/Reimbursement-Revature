@@ -156,32 +156,32 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		return reimbList;
 	}
 	
-	public Reimbursement getReimbById(int reimbId) throws Exception {
-		conn = ConnectionFactory.getConnection();
-
-		String sql = "SELECT * FROM V_All_Reimb WHERE reimb_id = ?";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, reimbId);
-		ResultSet rs = stmt.executeQuery();
-
-		Reimbursement reimb = null;
-		while (rs.next()) {
-			UserRole authorRole = new UserRole(rs.getInt("authorRole_id"), rs.getString("authorRole"));
-			User author = new User(rs.getInt("author_id"), rs.getString("author_name"), rs.getString("author_fName"),
-					rs.getString("author_lName"), rs.getString("author_email"), authorRole);
-			UserRole resolvsrRole = new UserRole(rs.getInt("resolvsrRole_id"), rs.getString("resolvsrRole"));
-			User resolvsr = new User(rs.getInt("resolvsr_id"), rs.getString("resolvsr_name"),
-					rs.getString("resolvsr_fName"), rs.getString("resolvsr_lName"), rs.getString("resolvsr_email"),
-					resolvsrRole);
-			ReimbursementType type = new ReimbursementType(rs.getInt("type_id"), rs.getString("type"));
-			ReimbursementStatus status = new ReimbursementStatus(rs.getInt("status_id"), rs.getString("status"));
-
-			reimb = new Reimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
-					rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
-					rs.getString("reimb_description"), rs.getBlob("reimb_receipt"), status, type, author, resolvsr);
-		}
-		return reimb;
-	}
+//	public Reimbursement getReimbById(int reimbId) throws Exception {
+//		conn = ConnectionFactory.getConnection();
+//
+//		String sql = "SELECT * FROM V_All_Reimb WHERE reimb_id = ?";
+//		PreparedStatement stmt = conn.prepareStatement(sql);
+//		stmt.setInt(1, reimbId);
+//		ResultSet rs = stmt.executeQuery();
+//
+//		Reimbursement reimb = null;
+//		while (rs.next()) {
+//			UserRole authorRole = new UserRole(rs.getInt("authorRole_id"), rs.getString("authorRole"));
+//			User author = new User(rs.getInt("author_id"), rs.getString("author_name"), rs.getString("author_fName"),
+//					rs.getString("author_lName"), rs.getString("author_email"), authorRole);
+//			UserRole resolvsrRole = new UserRole(rs.getInt("resolvsrRole_id"), rs.getString("resolvsrRole"));
+//			User resolvsr = new User(rs.getInt("resolvsr_id"), rs.getString("resolvsr_name"),
+//					rs.getString("resolvsr_fName"), rs.getString("resolvsr_lName"), rs.getString("resolvsr_email"),
+//					resolvsrRole);
+//			ReimbursementType type = new ReimbursementType(rs.getInt("type_id"), rs.getString("type"));
+//			ReimbursementStatus status = new ReimbursementStatus(rs.getInt("status_id"), rs.getString("status"));
+//
+//			reimb = new Reimbursement(rs.getInt("reimb_id"), rs.getDouble("reimb_amount"),
+//					rs.getTimestamp("reimb_submitted"), rs.getTimestamp("reimb_resolved"),
+//					rs.getString("reimb_description"), rs.getBlob("reimb_receipt"), status, type, author, resolvsr);
+//		}
+//		return reimb;
+//	}
 
 	@Override
 	public Blob getImageById(int id) throws Exception {
