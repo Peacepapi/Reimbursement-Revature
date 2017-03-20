@@ -49,7 +49,6 @@ public class CreateReimbServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		boolean isMultipart = ServletFileUpload.isMultipartContent(req);
-		System.out.println(isMultipart);
 
 		// Create a factory for disk-based file items
 		DiskFileItemFactory factory = new DiskFileItemFactory();

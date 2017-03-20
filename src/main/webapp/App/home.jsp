@@ -50,14 +50,12 @@
 								<td><fmt:formatNumber value="${reimb.rAmount}"
 										type="currency" /></td>
 								<td><c:if test="${current_user.userRole.userRoleId == 2}">
-										<a
-											href="ViewReimbsByStatus?statusId=${reimb.rStatus.rStatusId}">${reimb.rStatus.rStatus}</a>
+										<a href="ViewReimbsByStatus?statusId=${reimb.rStatus.rStatusId}">${reimb.rStatus.rStatus}</a>
 									</c:if> <c:if test="${current_user.userRole.userRoleId != 2}">
 									${reimb.rStatus.rStatus}						
 								</c:if></td>
 								<c:if test="${reimb.rResolver.username != null}">
-									<td>${reimb.rResolver.userFName}
-										${reimb.rResolver.userLName}</td>
+									<td>${reimb.rResolver.userFName} ${reimb.rResolver.userLName}</td>
 								</c:if>
 								<c:if test="${reimb.rResolver.username == null}">
 									<td class="empty-fields">-</td>
@@ -71,7 +69,7 @@
 								</c:if>
 								<td><c:if test="${reimb.rReceipt != null }">
 										<a href="ReimbImage?id=${reimb.rId}" target="_blank"><i
-											class="fa fa-list-alt fa-2x" aria-hidden="true"></i> </a>
+											class="fa fa-list-alt fa-2x myImg" aria-hidden="true"></i> </a>
 									</c:if> <c:if test="${reimb.rReceipt == null }">
 										<span class="empty-fields">-</span>
 									</c:if></td>
@@ -106,9 +104,7 @@
 									href="ReimbCreate"><i class="fa fa-plus-circle fa-2x"
 										aria-hidden="true"></i></a></td>
 						</tr>
-
 					</tbody>
-
 				</table>
 			</div>
 		</div>

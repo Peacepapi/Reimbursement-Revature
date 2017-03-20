@@ -1,12 +1,16 @@
+* {
+	font-family: 'Lato', sans-serif;
+	font-size: medium;
+}
 body {
 /* 	background-image: url(office.jpg);
     background-size: cover;
     background-repeat: no-repeat; */
     text-transform: capitalize;
-    background-color: #b3b9bd;
+    background-color: #c0c1c5;
 }
 .navbar-default {
-	background: #2b4e7f;
+	background: #d33f2d;
 	color: #fff;
 }
 .centered {
@@ -67,7 +71,7 @@ body {
 }
 
 .table>thead>tr>th {
-	background-color: #2b4e7f;
+	background-color: #d33f2d;
 	color: #fff; border-right : 2px solid #ddd;
 	text-align: center;
 	border-right: 2px solid #ddd;
@@ -90,8 +94,8 @@ body {
 }
 
 .btn-success {
-	background-color: #2EC4B6;
-	border-color: #2EC4B6;
+	background-color: #90c5e4;
+	border-color: #90c5e4;
 }
 
 .btn-danger {
@@ -100,12 +104,12 @@ body {
 }
 
 .btn-success:hover {
-	background-color: #12a597;
-	border-color: #12a597;
+	background-color: #50afe6;
+	border-color: #50afe6;
 }
  .btn-success:focus {
- 	background-color: #12a597;
-	border-color: #12a597;
+ 	background-color: #50afe6;
+	border-color: #50afe6;
  }
  
 .btn-danger:hover {
@@ -134,4 +138,7 @@ body {
 
 #form-deny {
 	float: right;
+}
+.fa {
+	color: #d33f2d;
 }

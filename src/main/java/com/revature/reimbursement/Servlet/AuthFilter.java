@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class AuthFilter implements Filter {
 
@@ -20,19 +21,17 @@ public class AuthFilter implements Filter {
 			req.setAttribute("message", "Please login to continue");
 			req.getRequestDispatcher("/login").forward(req, resp);
 		} else {
+			// expires cache, so back button won't work
+			((HttpServletResponse) resp).setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+			((HttpServletResponse) resp).setHeader("Pragma", "no-cache"); // HTTP 1.0.
+			((HttpServletResponse) resp).setDateHeader("Expires", 0);
 			chain.doFilter(req, resp);
 		}
 	}
 
 	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void destroy() {}
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
-		
-	}
+	public void init(FilterConfig arg0) throws ServletException {}
 }
